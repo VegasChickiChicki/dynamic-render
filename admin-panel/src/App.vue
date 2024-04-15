@@ -7,7 +7,7 @@
     <section class="main-content">
       <edit-form
         :template="template"
-        :styles="''"
+        :styles="templateStyles"
         @update:model-value="handleEditForm"
         v-if="template"
       />
@@ -17,6 +17,7 @@
           :title="stubDate.title"
           :description="stubDate.description"
           :template="template"
+          :template-styles="templateStyles"
         />
       </component-preview>
     </section>
@@ -34,6 +35,7 @@ const stubDate = ref<{ title: string, description: string }>({
   description: 'Article awesome description'
 })
 const template = ref<string | undefined>(undefined)
+const templateStyles = ref<string | undefined>(undefined)
 
 const handleEditForm = async (data: { template: string, styles: string }): Promise<void> => {
   await fetch('http://localhost:3001/api/template', {
@@ -46,7 +48,8 @@ const handleEditForm = async (data: { template: string, styles: string }): Promi
     return response.json()
   }).then((response) => {
     if (response.status === 'OK') {
-      template.value = response.data
+      template.value = response.data.template
+      templateStyles.value = response.data.styles
     }
   })
 }
@@ -55,7 +58,8 @@ fetch('http://localhost:3001/api/template').then((response) => {
   return response.json()
 }).then((response) => {
   if (response.status === 'OK') {
-    template.value = response.data
+    template.value = response.data.template
+    templateStyles.value = response.data.styles
   }
 })
 </script>

@@ -9,7 +9,13 @@
     </p>
   </article>
 
-  <component v-else :is="dynamicComponent" />
+  <template v-else>
+    <component :is="dynamicComponent" />
+
+    <component v-if="props.templateStyles" is="style">
+      {{ props.templateStyles }}
+    </component>
+  </template>
 </template>
 
 <script setup lang="ts">
@@ -24,7 +30,11 @@ const dynamicComponent = computed<DefineComponent | null>(() => {
   }
 
   return defineComponent({
-    template: props.template,
+    template: `
+      <div class="dynamic-component">
+        ${props.template}
+      </div>
+    `,
     setup() {
       return reactive({
         title: props.title,

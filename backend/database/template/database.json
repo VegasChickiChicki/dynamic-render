@@ -1,3 +1,4 @@
 {
-  "template": "<article style=\"width: 500px; border: 1px solid #000;\"><h1>{{ title }}</h1><br><br><br><br><p>{{ description }}</p></article>"
+  "template": "<article style=\"width: 500px; border: 1px solid #000;\"> \n  <h1>{{ title }}</h1>\n\n  <br><br><br><br>\n\n  <p>\n    {{ description }}\n  </p>\n</article>",
+  "styles": ".dynamic-component {\n color: red;\n}"
 }

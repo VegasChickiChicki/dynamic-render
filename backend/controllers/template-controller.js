@@ -21,7 +21,7 @@ const updateTemplate = (request, response) => {
 		return;
 	}
 
-	const template = templateService.updateTemplate(request.body.template)
+	const template = templateService.updateTemplate(body)
 
 	response.send({
 		status: 'OK',
