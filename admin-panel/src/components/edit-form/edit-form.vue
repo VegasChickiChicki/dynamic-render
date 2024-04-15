@@ -46,7 +46,7 @@ const props = defineProps<TProps>()
 const emits = defineEmits<TEmits>()
 
 const template = ref<string>(props.template);
-const styles = ref<string>(props.styles);
+const styles = ref<string>(props.styles || '');
 
 const handleForm = (): void => {
   emits('update:model-value', {

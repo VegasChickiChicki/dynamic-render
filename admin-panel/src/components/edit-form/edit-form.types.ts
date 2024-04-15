@@ -1,6 +1,6 @@
 type TProps = {
 	template: string,
-	styles: string
+	styles?: string
 }
 
 type TEmits = {
