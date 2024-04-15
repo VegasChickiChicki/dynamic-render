@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    expose:
+      - "3000:3000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - node_modules-frontend:/app/node_modules
+      - dist-frontend:/app/dist
+  admin-panel:
+    build:
+      context: ./admin-panel
+      dockerfile: Dockerfile
+    expose:
+      - "3002:3002"
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./admin-panel:/app
+      - node_modules-admin-panel:/app/node_modules
+      - dist-admin-panel:/app/dist
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend:/app
+      - ./backend/database/articles/database.json:/app/database/articles/database.json
+      - ./backend/database/template/database.json:/app/database/template/database.json
+      - node_modules-backend:/app/node_modules
+
+volumes:
+  node_modules-backend:
+  node_modules-frontend:
+  node_modules-admin-panel:
+
+  dist-frontend:
+  dist-admin-panel:
